@@ -1,7 +1,6 @@
 FROM lightdash/lightdash:0.1170.0 as builder_lightdash
 
-ARG PYTHON_VERSION="3.10"
-ARG PYTHON_VERSION_DOCKER=3.10-slim-bookworm
+ARG PYTHON_VERSION_DOCKER="3.10-slim-bookworm"
 
 FROM python:${PYTHON_VERSION_DOCKER}
 
