@@ -25,6 +25,9 @@ RUN pip install --upgrade pip wheel && \
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip install "meltano[azure,gcs,mssql,postgres,psycopg2,s3,uv]==${MELTANO_VERSION}"
 
+RUN apt-get install -y nvm && \
+    nvm install 20
+
 COPY --from=builder_lightdash /usr/local/dbt1.4 /usr/local/dbt1.4
 COPY --from=builder_lightdash /usr/local/dbt1.5 /usr/local/dbt1.5
 COPY --from=builder_lightdash /usr/local/dbt1.6 /usr/local/dbt1.6
