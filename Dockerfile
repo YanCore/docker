@@ -11,8 +11,10 @@ ENV PIP_NO_CACHE_DIR=1
 
 RUN mkdir "${WORKDIR}" && \
     apt-get update && \
-    apt-get install -y build-essential freetds-bin freetds-dev git libkrb5-dev libssl-dev tdsodbc unixodbc unixodbc-dev && \
+    apt-get install -y build-essential freetds-bin freetds-dev git libkrb5-dev libssl-dev tdsodbc unixodbc unixodbc-dev nvm && \
     rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
+
+RUN nvm install 20
 
 WORKDIR "${WORKDIR}"
 
@@ -25,8 +27,7 @@ RUN pip install --upgrade pip wheel && \
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip install "meltano[azure,gcs,mssql,postgres,psycopg2,s3,uv]==${MELTANO_VERSION}"
 
-RUN apt-get install -y nvm && \
-    nvm install 20
+
 
 COPY --from=builder_lightdash /usr/local/dbt1.4 /usr/local/dbt1.4
 COPY --from=builder_lightdash /usr/local/dbt1.5 /usr/local/dbt1.5
