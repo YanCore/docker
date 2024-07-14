@@ -11,10 +11,10 @@ ENV PIP_NO_CACHE_DIR=1
 
 RUN mkdir "${WORKDIR}" && \
     apt-get update && \
-    apt-get install -y build-essential freetds-bin freetds-dev git libkrb5-dev libssl-dev tdsodbc unixodbc unixodbc-dev nvm && \
+    apt-get install -y build-essential freetds-bin freetds-dev git libkrb5-dev libssl-dev tdsodbc unixodbc unixodbc-dev curl && \
     rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
-# RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 RUN nvm install 20
 
 WORKDIR "${WORKDIR}"
