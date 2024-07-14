@@ -15,7 +15,7 @@ RUN mkdir "${WORKDIR}" && \
     rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-RUN $NVM_DIR/nvm.sh install 20
+RUN /root/.nvm/nvm.sh install 20
 
 WORKDIR "${WORKDIR}"
 
