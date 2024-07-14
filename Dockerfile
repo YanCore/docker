@@ -29,7 +29,7 @@ COPY --from=builder_lightdash /usr/local/dbt1.5 /usr/local/dbt1.5
 COPY --from=builder_lightdash /usr/local/dbt1.6 /usr/local/dbt1.6
 COPY --from=builder_lightdash /usr/local/dbt1.7 /usr/local/dbt1.7
 COPY --from=builder_lightdash /usr/local/dbt1.8 /usr/local/dbt1.8
-COPY --from=prod-builder /usr/app /usr/app
+COPY --from=builder_lightdash /usr/app /usr/app
 COPY --from=builder_lightdash /usr/app/lightdash.yml /usr/app/lightdash.yml
 ENV LIGHTDASH_CONFIG_FILE /usr/app/lightdash.yml
 
