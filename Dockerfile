@@ -22,6 +22,7 @@ ENV PATH="/venv/bin:${PATH}"
 
 # Installing the application the same way our users do when using PyPI
 RUN pip install --upgrade pip wheel && \
+    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip install "meltano[azure,gcs,mssql,postgres,psycopg2,s3,uv]==${MELTANO_VERSION}"
 
 COPY --from=builder_lightdash /usr/local/dbt1.4 /usr/local/dbt1.4
@@ -32,5 +33,6 @@ COPY --from=builder_lightdash /usr/local/dbt1.8 /usr/local/dbt1.8
 COPY --from=builder_lightdash /usr/app /usr/app
 COPY --from=builder_lightdash /usr/app/lightdash.yml /usr/app/lightdash.yml
 ENV LIGHTDASH_CONFIG_FILE /usr/app/lightdash.yml
+
 
 ENTRYPOINT ["meltano"]
