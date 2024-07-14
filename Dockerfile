@@ -11,11 +11,12 @@ ENV PIP_NO_CACHE_DIR=1
 
 RUN mkdir "${WORKDIR}" && \
     apt-get update && \
-    apt-get install -y build-essential freetds-bin freetds-dev git libkrb5-dev libssl-dev tdsodbc unixodbc unixodbc-dev curl && \
+    apt-get install -y build-essential freetds-bin freetds-dev git libkrb5-dev libssl-dev tdsodbc unixodbc unixodbc-dev && \
     rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-RUN /root/.nvm/nvm.sh install 20
+
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - 
+RUN apt-get install -y nodejs
 
 WORKDIR "${WORKDIR}"
 
