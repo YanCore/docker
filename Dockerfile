@@ -11,12 +11,12 @@ ENV PIP_NO_CACHE_DIR=1
 
 RUN mkdir "${WORKDIR}" && \
     apt-get update && \
-    apt-get install -y build-essential freetds-bin freetds-dev git libkrb5-dev libssl-dev tdsodbc unixodbc unixodbc-dev && \
+    apt-get install -y build-essential freetds-bin freetds-dev git libkrb5-dev libssl-dev tdsodbc unixodbc unixodbc-dev curl && \
     rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - 
-RUN apt-get install -y node
+RUN apt-get install -y nodejs
 
 WORKDIR "${WORKDIR}"
 
